@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <PersistGate loading={<Loader />} persistor={persistor}>
       <BrowserRouter
-      // basename='/goit-react-hw-05'
+      basename='/goit-react-hw-08'
       >
         <App />
         <ToastContainer
