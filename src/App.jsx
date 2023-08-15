@@ -50,8 +50,8 @@ export const App = () => {
           </StyledNavDiv>
           {!auth ? (
             <StyledNavDiv>
-              <StyledNavLink to="/register">Sign in</StyledNavLink>
-              <StyledNavLink to="/login">Sign up</StyledNavLink>
+              <StyledNavLink to="/register">Sign up</StyledNavLink>
+              <StyledNavLink to="/login">Sign in</StyledNavLink>
             </StyledNavDiv>
           ) : (
             <StyledNavDiv>
