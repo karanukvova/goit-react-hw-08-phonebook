@@ -5,7 +5,6 @@ import Filter from 'components/filter/filter';
 
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 import { requestContactsThunk, selectContactsError, selectContactsIsLoading, selectUserContacts } from 'redux/contactsSlice';
 import { selectAuthentificated } from 'redux/selectors';
 import { ContactsTitle, Container } from './ContactsPage.styled';
@@ -22,7 +21,6 @@ const ContactsPage = () => {
      dispatch(requestContactsThunk());
    }, [auth, dispatch]);
 
-  if (!auth) return <Navigate to="/" />;
   
    return (
      <Container className="App">

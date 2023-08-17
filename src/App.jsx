@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { logoutUserThunk, refreshUserThunk } from 'redux/operations';
 import { StyledButton, StyledHeader, StyledNav, StyledNavDiv, StyledNavLink, StyledP } from 'App.styled';
 import { AppFooter } from 'components/AppFooter/AppFooter';
+import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
@@ -45,8 +46,8 @@ export const App = () => {
       <StyledHeader>
         <StyledNav>
           <StyledNavDiv>
-          <StyledNavLink to="/">Home</StyledNavLink>
-          {auth && <StyledNavLink to="/contacts">Contacts</StyledNavLink>}
+            <StyledNavLink to="/">Home</StyledNavLink>
+            {auth && <StyledNavLink to="/contacts">Contacts</StyledNavLink>}
           </StyledNavDiv>
           {!auth ? (
             <StyledNavDiv>
@@ -65,14 +66,21 @@ export const App = () => {
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/contacts" element={<ContactsPage />} />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute redirectTo="/login">
+                  <ContactsPage />
+                </PrivateRoute>
+              }
+            />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
           </Routes>
         </Suspense>
         {isLoading && <Loader />}
       </main>
-      <AppFooter/>
+      <AppFooter />
     </div>
   );
 };
